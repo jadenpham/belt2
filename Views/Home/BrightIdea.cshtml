@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model Idea
+    <div>
+        <a href="/bright_ideas/@ViewBag.id">Bright Ideas</a>
+        <a href="/logout">Log Out</a>
+        <h1>@Model.Creator.Alias said "@Model.Description"</h1>
+    </div>
+    <div>
+        <h3>People who liked this post:</h3>
+        <table>
+            <th>
+                <tr>
+                    <td>Alias</td>
+                    <td>Name</td>
+                </tr>
+            </th>
+            <tbody>
+                @foreach(var like in Model.Likes)
+                {
+                <tr>
+                    <td><a href="/users/@like.Liker.UserId">@like.Liker.Alias</a></td>
+                    <td>@like.Liker.Name</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

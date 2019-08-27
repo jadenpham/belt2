@@ -1,0 +1,52 @@
+@model List<Idea>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Hi @ViewBag.user</h1>
+        <a href="/logout">Log Out</a>
+        <a href="/newidea">New Idea</a>
+    </div>
+    <div>
+        <table>
+            <th>
+                <tr>
+                    <td>User</td>
+                    <td>Idea</td>
+                    <td>Likes</td>
+                    <td>Action</td>
+                </tr>
+            </th>
+            <tbody>
+                @foreach(var idea in Model)
+                {
+                    <tr>
+                        <td><a href="/users/@idea.Creator.UserId">@idea.Creator.Alias</a></td>
+                        <td>@idea.Description</td>
+                        <td><a href="/bright_idea/@idea.IdeaId">@idea.Likes.Count people</a></td>
+                        <td>
+                        @if(ViewBag.id == idea.UserId)
+                        {
+                            <a href="/delete/@idea.IdeaId">Delete</a>
+                        }
+                       else if(@idea.Likes.Any(a => a.UserId == ViewBag.id))
+                        {
+                                <p>Liked</p>
+                        }
+                        else{
+                            <a href="/like/@idea.IdeaId">Like</a> 
+                        }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

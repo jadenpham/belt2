@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model UserReg
+    <div>
+        <h3>Name: @Model.Name</h3>
+        <h3>Alias: @Model.Alias</h3>
+        <h3>Email: @Model.Email</h3>
+        <a href="/logout">Log Out</a>
+        <a href="/bright_ideas/@ViewBag.id">Bright Ideas</a>
+        <hr>
+    </div>
+    <div>
+        <h3>Total Number of Posts: @Model.Ideas.Count</h3>
+        @{int total =0;}
+        @for(int i =0; i<Model.Ideas.Count; i++)
+        {
+            total += Model.Ideas[i].Likes.Count;
+        }
+        <h3>Total Number of Likes: @total</h3>
+    </div>
+</body>
+</html>

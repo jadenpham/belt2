@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model Idea
+    <h1>Add new idea</h1>
+    <a href="/bright_ideas/@ViewBag.id">Home</a>
+    <form asp-action="newIdea" asp-controller="Home" method="post">
+        <input asp-for="Description">
+        <span asp-validation-for="Description"></span>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
